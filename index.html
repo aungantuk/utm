@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Shopee dengan UTM</title>
+    <script>
+        // Fungsi untuk mendeteksi sumber perujuk dan menambahkan UTM
+        function addUTMToLink() {
+            // Dapatkan referer dari browser
+            var referrer = document.referrer;
+            var utmSource = '';
+
+            // Cek apakah referer berasal dari Facebook atau Instagram
+            if (referrer.includes('facebook.com')) {
+                utmSource = 'facebook';
+            } else if (referrer.includes('instagram.com')) {
+                utmSource = 'instagram';
+            } else {
+                utmSource = 'other'; // Jika tidak dari Instagram atau Facebook
+            }
+
+            // Link Shopee yang akan dimodifikasi
+            var originalLink = 'https://shopee.co.id/product/1360283095/27861671532'; // Ganti dengan link produk yang sesuai
+
+            // Menambahkan parameter UTM
+            var modifiedLink = originalLink + '?utm_source=' + utmSource + '&utm_medium=social';
+
+            // Tampilkan link yang dimodifikasi
+            document.getElementById('shopeeLink').href = modifiedLink;
+            document.getElementById('shopeeLink').innerText = modifiedLink;
+        }
+
+        // Panggil fungsi untuk menambahkan UTM
+        window.onload = addUTMToLink;
+    </script>
+</head>
+<body>
+    <h1>Bagikan Link Shopee dengan UTM</h1>
+    <p>Link Produk Shopee: <a id="shopeeLink" href="#">Loading...</a></p>
+</body>
+</html>
